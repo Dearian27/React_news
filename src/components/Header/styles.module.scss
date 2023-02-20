@@ -1,0 +1,106 @@
+.header {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 10px;
+  
+  .logoWrapper {
+    display: flex;
+    align-items: center;
+    user-select: none;
+    outline: none;
+
+    .logo {
+      height: 50px;
+      width: 50px;
+      margin-right: 20px;
+      animation: rotation 5s linear infinite;  
+    }
+    .logoText {
+      font-family: 'Poppins';
+      font-size: 26px;
+      font-weight: bold;
+      color: black;
+    }
+  }
+  
+  @keyframes rotation {
+    to {
+      transform: rotate(360deg);
+    }
+    from {
+      transform: rotate(0deg);
+    }
+  }
+  
+  .nav {
+    height: 100%;
+    display: flex;
+    gap: 20px;
+
+    .navItem {
+      font-size: 20px;
+      color: black;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      transition: 0.3s ease-in-out;
+    }
+  }
+
+  .user {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: 10px;
+    cursor: pointer;
+    color: #EC3E79;
+    text-decoration: none;
+
+    
+    .userIcon {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      background-color: #b6b6b6;
+      border: 3px solid lightgray;
+      animation: sizing 2s ease-in-out infinite;
+    }
+    @keyframes sizing {
+      0% {
+        border-color: #fff;
+      }
+      50% {
+        border-color: lightgray;
+      }
+      100% {
+        border-color: #fff;
+      }
+    }
+  }
+  .btnLogIn {
+    margin:  auto 0px;
+    padding: 8px 10px;
+    background-color: transparent;
+    border-radius: 3px;
+    border: 2px solid black;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+    
+    &:hover {
+      background-color: #f4f4f4;
+    }
+  }
+}
+
+:global {
+  .active {
+    text-decoration: underline !important;
+    color: #EC3E79 !important;
+  }
+}
+
