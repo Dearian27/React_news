@@ -3,6 +3,7 @@ import styles from './App.module.scss';
 import Header from './components/Header';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import Home from './pages/Home';
+import LogIn from './pages/LogIn';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/login' element={<LogIn />} />
       </Routes>
     </div>
   )

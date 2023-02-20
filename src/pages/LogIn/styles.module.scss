@@ -1,0 +1,69 @@
+.container {
+  width: 100%;
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .title {
+    font-size: 24px;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+    .input {
+      font-size: 20px;
+      padding: 5px 10px;
+      width: 300px;
+      border-radius: 5px;
+      background-color: white;
+      transition: background-color 0.4s ease-in-out, color 0.5s ease-in-out;
+
+      &.black {
+        background-color: black;
+        color: white;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+    .pswd {
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      .pswdIcon {
+        position: absolute;
+        left: 100%;
+        height: 30px;
+        margin-left: 5px;
+      }
+    }
+    .btnContainer {
+      display: flex;
+      justify-content: space-between;
+
+      .btnSubmit {
+        font-size: 20px;
+        font-weight: 600;
+        padding: 8px 35px;
+        color: white;
+        border: 2px solid black;
+        border-radius: 5px;
+        background-color: black;
+      }
+      .btnBack {
+        font-size: 20px;
+        font-weight: 600;
+        padding: 8px 35px;
+        color: black;
+        border: 2px solid black;
+        border-radius: 5px;
+        background-color: transparent;
+      }
+    }    
+  }
+}

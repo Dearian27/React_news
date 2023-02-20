@@ -3,16 +3,15 @@ import reactLogo from '../../assets/reactLogo.svg'
 import styles from './styles.module.scss';
 import { useState } from 'react';
 import userIcon from '../../assets/userIcon.jpg';
+import userSlice from '../../redux/slices/userSlice';
+import { useSelector } from 'react-redux';
 
 const Header: React.FC = () => {
 
+  const User = useSelector((state: any) => state.user);
 
-  const User = {
-    name: 'Admin',
-    password: '12345'
-  }
-  const [isAuth, setIsAuth] = useState<boolean>(false);
-  // const [isAuth, setIsAuth] = useState<boolean>(true);
+  console.log(User);
+
 
   const navigate = useNavigate();
 
@@ -28,11 +27,11 @@ const Header: React.FC = () => {
       <nav className={styles.nav}>
         <NavLink className={styles.navItem} to="/">HOME</NavLink>
         <NavLink className={styles.navItem} to="/news">NEWS</NavLink>
-        {isAuth &&
+        {User.isAuth &&
           <NavLink className={styles.navItem} to="/profile">PROFILE</NavLink>
         }
       </nav>
-      {isAuth ?
+      {User.isAuth ?
         <Link to="/profile" className={styles.user}>
           {User.name}
           <img src={userIcon} className={styles.userIcon} alt="user" />
