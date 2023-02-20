@@ -49,44 +49,51 @@
     }
   }
 
-  .user {
+  .authContainer {
     display: flex;
     align-items: center;
-    height: 100%;
-    gap: 10px;
-    cursor: pointer;
-    color: #EC3E79;
-    text-decoration: none;
+    gap: 30px;
+    height: inherit;
 
-    
-    .userIcon {
-      height: 40px;
-      width: 40px;
-      border-radius: 50%;
-      background-color: #b6b6b6;
-      border: 3px solid lightgray;
-      animation: sizing 2s ease-in-out infinite;
-    }
-    @keyframes sizing {
-      0% {
-        border-color: #fff;
+    .user {
+      display: flex;
+      align-items: center;
+      height: inherit;
+      gap: 10px;
+      cursor: pointer;
+      color: #EC3E79;
+      text-decoration: none;
+  
+      
+      .userIcon {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        background-color: #b6b6b6;
+        border: 3px solid lightgray;
+        animation: sizing 2s ease-in-out infinite;
       }
-      50% {
-        border-color: lightgray;
-      }
-      100% {
-        border-color: #fff;
+      @keyframes sizing {
+        0% {
+          border-color: #fff;
+        }
+        50% {
+          border-color: lightgray;
+        }
+        100% {
+          border-color: #fff;
+        }
       }
     }
   }
-  .btnLogIn {
+  .btn {
     margin:  auto 0px;
-    padding: 8px 10px;
+    padding: 6px 8px;
     background-color: transparent;
     border-radius: 3px;
     border: 2px solid black;
     color: black;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     transition: background-color 0.2s ease-in-out;
     cursor: pointer;

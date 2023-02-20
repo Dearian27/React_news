@@ -20,12 +20,15 @@ const userSlice = createSlice({
       state.isAuth = action.payload;
     },
     checkToken: (state) => {
-      state.name = window.localStorage.getItem('name');
-      state.password = window.localStorage.getItem('password');
       if(state.name) state.isAuth = true;
+    },
+    removeToken: (state) => {
+      state.isAuth = false;
+      state.name = null;
+      state.password = null; 
     }
   }
 })
 
-export const {setAuth, checkToken} = userSlice.actions;
+export const {setAuth, checkToken, removeToken} = userSlice.actions;
 export default userSlice.reducer;

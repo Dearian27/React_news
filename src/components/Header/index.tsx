@@ -3,7 +3,7 @@ import reactLogo from '../../assets/reactLogo.svg'
 import styles from './styles.module.scss';
 import { useState } from 'react';
 import userIcon from '../../assets/userIcon.jpg';
-import userSlice, { checkToken } from '../../redux/slices/userSlice';
+import userSlice, { checkToken, removeToken } from '../../redux/slices/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Header: React.FC = () => {
@@ -16,7 +16,11 @@ const Header: React.FC = () => {
   dispatch(checkToken());
   const User = useSelector((state: any) => state.user);
 
-
+  const signOut = () => {
+    dispatch(removeToken());
+    window.localStorage.removeItem('name');
+    window.localStorage.removeItem('password');
+  }
 
   return (
     <header className={styles.header}>
@@ -33,12 +37,15 @@ const Header: React.FC = () => {
         }
       </nav>
       {User.isAuth ?
-        <Link to="/profile" className={styles.user}>
-          {User.name}
-          <img src={userIcon} className={styles.userIcon} alt="user" />
-        </Link>
+        <div className={styles.authContainer}>
+          <button className={styles.btn} onClick={() => signOut()}>Sign out</button>
+          <Link to="/profile" className={styles.user}>
+            {User.name}
+            <img src={userIcon} className={styles.userIcon} alt="user" />
+          </Link>
+        </div>
         :
-        <button className={styles.btnLogIn} onClick={() => navigate('/login')}>Sign in</button>
+        <button className={styles.btn} onClick={() => navigate('/login')}>Sign in</button>
       }
     </header>
   )

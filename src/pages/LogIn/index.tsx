@@ -34,6 +34,8 @@ const LogIn: React.FC = () => {
     if (password === "12345" && name === "admin") {
       window.localStorage.setItem('name', name);
       window.localStorage.setItem('password', password);
+
+      console.log(window.localStorage.getItem('password'));
       dipatch(setAuth(true));
       navigate('/');
     }
