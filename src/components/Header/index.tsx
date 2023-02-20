@@ -3,17 +3,18 @@ import reactLogo from '../../assets/reactLogo.svg'
 import styles from './styles.module.scss';
 import { useState } from 'react';
 import userIcon from '../../assets/userIcon.jpg';
-import userSlice from '../../redux/slices/userSlice';
-import { useSelector } from 'react-redux';
+import userSlice, { checkToken } from '../../redux/slices/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Header: React.FC = () => {
 
-  const User = useSelector((state: any) => state.user);
-
-  console.log(User);
-
-
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  console.log(window.localStorage.getItem('name'));
+
+
+  dispatch(checkToken());
+  const User = useSelector((state: any) => state.user);
 
 
 

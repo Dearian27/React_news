@@ -2,14 +2,14 @@ import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 
 interface stateI {
   isAuth: boolean;
-  name: string;
-  password: string;
+  name: string | null;
+  password: string | null;
 }
 
 const initialState: stateI = {
   isAuth: false,
-  name: window.localStorage.getItem('name') as string,
-  password: window.localStorage.getItem('password') as string,
+  name: window.localStorage.getItem('name') as string || null,
+  password: window.localStorage.getItem('password') as string || null,
 }
 
 const userSlice = createSlice({
@@ -18,8 +18,14 @@ const userSlice = createSlice({
   reducers: {
     setAuth: (state, action:PayloadAction<boolean>)  => {
       state.isAuth = action.payload;
+    },
+    checkToken: (state) => {
+      state.name = window.localStorage.getItem('name');
+      state.password = window.localStorage.getItem('password');
+      if(state.name) state.isAuth = true;
     }
   }
 })
 
+export const {setAuth, checkToken} = userSlice.actions;
 export default userSlice.reducer;
