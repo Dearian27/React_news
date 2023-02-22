@@ -67,3 +67,9 @@
     }    
   }
 }
+
+:global {
+  .red {
+    border-color: red !important;
+  }
+} 
