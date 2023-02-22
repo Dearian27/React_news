@@ -20,6 +20,8 @@ const userSlice = createSlice({
       state.isAuth = action.payload;
     },
     checkToken: (state) => {
+      state.name = window.localStorage.getItem('name');
+      state.password = window.localStorage.getItem('password');
       if(state.name) state.isAuth = true;
     },
     removeToken: (state) => {
