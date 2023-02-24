@@ -10,24 +10,14 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useTranslation } from 'react-i18next'
 
 interface lngsI {
-  title: string;
-  value: string;
+  en: string;
+  ua: string;
 }
 
-// const languages: lngsI[] = [
-//   {
-//     title: 'English',
-//     value: 'en',
-//   },
-//   {
-//     title: 'Українська',
-//     value: 'ua',
-//   }
-// ]
 
 const languages = {
-  en: 'English',
-  ua: 'Українська',
+  "en": 'English',
+  "ua": 'Українська',
 };
 
 const Header: React.FC = () => {
@@ -38,8 +28,6 @@ const Header: React.FC = () => {
 
   const [lngsListOpen, setLngsListOpen] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-
-  // console.log(window.localStorage.getItem('name'));
 
 
   dispatch(checkToken());
@@ -105,7 +93,7 @@ const Header: React.FC = () => {
             }}
           >
             <Typography onClick={() => setLngsListOpen(!lngsListOpen)} sx={{ p: 2, display: "flex", alignItems: "center", cursor: "pointer", userSelect: "none" }}>
-              {i18n.language}<KeyboardArrowDownIcon className={`${styles.arrowIcon} ${lngsListOpen ? "rotated" : ""}`} />
+              {t("lngTitle")}<KeyboardArrowDownIcon className={`${styles.arrowIcon} ${lngsListOpen ? "rotated" : ""}`} />
             </Typography>
             {lngsListOpen &&
               i18n.languages.map((lang, lId) => {
