@@ -66,6 +66,7 @@
       gap: 10px;
       cursor: pointer;
       color: #EC3E79;
+      text-transform: none;
       text-decoration: none;
   
       
@@ -88,6 +89,10 @@
           border-color: #fff;
         }
       }
+    }
+    .arrowIcon {
+      height: 40px;
+      transition: 1s ease-in-out;
     }
   }
   .btn {
@@ -112,6 +117,9 @@
   .active {
     text-decoration: underline !important;
     color: #EC3E79 !important;
+  }
+  .rotated {
+    transform: rotate(180deg);
   }
 }
 

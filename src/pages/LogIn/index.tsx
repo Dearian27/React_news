@@ -46,7 +46,6 @@ const LogIn: React.FC = () => {
       window.localStorage.setItem('name', name);
       window.localStorage.setItem('password', password);
 
-      console.log(window.localStorage.getItem('password'));
       dipatch(setAuth(true));
       navigate('/');
     }
@@ -71,9 +70,13 @@ const LogIn: React.FC = () => {
     <section className={styles.container}>
       <form className={styles.form} onSubmit={handleSubmit}>
         <h1 className={styles.title}>Log in</h1>
-        <input ref={nameRef} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setName(event.target.value)} value={name} className={styles.input} type="text" />
+        <input ref={nameRef} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setName(event.target.value)}
+          value={name} className={styles.input} type="text"
+        />
         <label className={styles.pswd}>
-          <input onChange={(event: React.ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)} value={password} className={styles.input} ref={pswdRef} type={viewType} />
+          <input onChange={(event: React.ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)}
+            value={password} className={styles.input} ref={pswdRef} type={viewType}
+          />
           <img className={styles.pswdIcon} onClick={changeView} src={viewType === "password" ? eyeCloseIcon : eyeIcon} />
         </label>
         <div className={styles.btnContainer}>
