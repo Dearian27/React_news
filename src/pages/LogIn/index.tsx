@@ -80,7 +80,7 @@ const LogIn: React.FC = () => {
           <img className={styles.pswdIcon} onClick={changeView} src={viewType === "password" ? eyeCloseIcon : eyeIcon} />
         </label>
         <div className={styles.btnContainer}>
-          <button onClick={() => navigate("/")} className={styles.btnBack}>Back</button>
+          <button type='button' onClick={() => navigate("/")} className={styles.btnBack}>Back</button>
           <button type='submit' className={styles.btnSubmit}>Submit</button>
         </div>
       </form>
@@ -90,7 +90,7 @@ const LogIn: React.FC = () => {
           {alertMessage}
         </Alert>
       </Snackbar>
-    </section>
+    </section >
   )
 }
 

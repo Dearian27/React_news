@@ -7,33 +7,36 @@ import userSlice, { checkToken, removeToken } from '../../redux/slices/userSlice
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Popover, Typography } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-
+import { useTranslation } from 'react-i18next'
 
 interface lngsI {
   title: string;
-  value?: string;
+  value: string;
 }
 
-const languages: lngsI[] = [
-  {
-    title: 'English',
-    value: 'en',
-  },
-  {
-    title: 'Українська',
-    value: 'ua',
-  }
-]
+// const languages: lngsI[] = [
+//   {
+//     title: 'English',
+//     value: 'en',
+//   },
+//   {
+//     title: 'Українська',
+//     value: 'ua',
+//   }
+// ]
+
+const languages = {
+  en: 'English',
+  ua: 'Українська',
+};
 
 const Header: React.FC = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { t, i18n } = useTranslation();
 
-
-  const [lngsOpen, setLngsOpen] = useState<boolean>(false);
-  const [lngs, setLngs] = useState<lngsI[]>(languages);
-
+  const [lngsListOpen, setLngsListOpen] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
   // console.log(window.localStorage.getItem('name'));
@@ -42,8 +45,13 @@ const Header: React.FC = () => {
   dispatch(checkToken());
   const User = useSelector((state: any) => state.user);
 
+  const changeLanguage = (value: string) => {
+    i18n.changeLanguage(value);
+    setLngsListOpen(false);
+  }
+
   const signOut = () => {
-    setLngsOpen(false);
+    setLngsListOpen(false);
     setAnchorEl(null);
     dispatch(removeToken());
     window.localStorage.removeItem('name');
@@ -52,7 +60,7 @@ const Header: React.FC = () => {
 
   const handlePopoverClose: () => void = () => {
     setAnchorEl(null);
-    setLngsOpen(false);
+    setLngsListOpen(false);
   }
   const handlePopoverClick: (event: React.MouseEvent<HTMLButtonElement>) => void = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -69,10 +77,10 @@ const Header: React.FC = () => {
       </Link>
 
       <nav className={styles.nav}>
-        <NavLink className={styles.navItem} to="/">HOME</NavLink>
-        <NavLink className={styles.navItem} to="/news">NEWS</NavLink>
+        <NavLink className={styles.navItem} to="/">{t("home")}</NavLink>
+        <NavLink className={styles.navItem} to="/news">{t("news")}</NavLink>
         {User.isAuth &&
-          <NavLink className={styles.navItem} to="/profile">PROFILE</NavLink>
+          <NavLink className={styles.navItem} to="/profile">{t("profile")}</NavLink>
         }
       </nav>
       {User.isAuth ?
@@ -96,19 +104,27 @@ const Header: React.FC = () => {
               horizontal: 'right',
             }}
           >
-            <Typography onClick={() => setLngsOpen(!lngsOpen)} sx={{ p: 2, display: "flex", alignItems: "center", cursor: "pointer", userSelect: "none" }}>
-              українська<KeyboardArrowDownIcon className={`${styles.arrowIcon} ${lngsOpen ? "rotated" : ""}`} />
+            <Typography onClick={() => setLngsListOpen(!lngsListOpen)} sx={{ p: 2, display: "flex", alignItems: "center", cursor: "pointer", userSelect: "none" }}>
+              {i18n.language}<KeyboardArrowDownIcon className={`${styles.arrowIcon} ${lngsListOpen ? "rotated" : ""}`} />
             </Typography>
-            {lngsOpen &&
-              languages.map((lang, lId) => {
-                return <Typography key={lId} onClick={() => { }} sx={{ p: 1, backgroundColor: "lightgray", cursor: "pointer", transition: "0.5s ease-in-out", "&:hover": { backgroundColor: "#eaeaea" } }}>{lang.title}</Typography>
+            {lngsListOpen &&
+              i18n.languages.map((lang, lId) => {
+                return (
+                  <Typography key={lId} onClick={() => changeLanguage(lang)}
+                    sx={{
+                      p: 1, backgroundColor: "lightgray", cursor: "pointer", transition: "0.5s ease-in-out", "&:hover": { backgroundColor: "#eaeaea" }
+                    }}
+                  >
+                    {lang}
+                  </Typography>
+                )
               })
             }
-            <Typography sx={{ p: 2, cursor: "pointer" }} onClick={() => signOut()}>Sign out</Typography>
+            <Typography sx={{ p: 2, cursor: "pointer" }} onClick={() => signOut()}>{t("signOut")}</Typography>
           </Popover>
         </div>
         :
-        <button className={styles.btn} onClick={() => navigate('/login')}>Sign in</button>
+        <button className={styles.btn} onClick={() => navigate('/login')}>{t("SignIn")}</button>
       }
     </header >
   )
