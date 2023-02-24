@@ -9,16 +9,6 @@ import { Button, Popover, Typography } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useTranslation } from 'react-i18next'
 
-interface lngsI {
-  en: string;
-  ua: string;
-}
-
-
-const languages = {
-  "en": 'English',
-  "ua": 'Українська',
-};
 
 const Header: React.FC = () => {
 
