@@ -5,10 +5,11 @@ import { useState } from 'react';
 import userIcon from '../../assets/userIcon.jpg';
 import userSlice, { checkToken, removeToken } from '../../redux/slices/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Popover, Typography } from '@mui/material';
+import { Box, Button, Popover, Typography } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useTranslation } from 'react-i18next'
-
+import { Languages } from '../../../public/locales';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Header: React.FC = () => {
 
@@ -82,23 +83,30 @@ const Header: React.FC = () => {
               horizontal: 'right',
             }}
           >
-            <Typography onClick={() => setLngsListOpen(!lngsListOpen)} sx={{ p: 2, display: "flex", alignItems: "center", cursor: "pointer", userSelect: "none" }}>
-              {t("lngTitle")}<KeyboardArrowDownIcon className={`${styles.arrowIcon} ${lngsListOpen ? "rotated" : ""}`} />
-            </Typography>
-            {lngsListOpen &&
-              i18n.languages.map((lang, lId) => {
-                return (
-                  <Typography key={lId} onClick={() => changeLanguage(lang)}
-                    sx={{
-                      p: 1, backgroundColor: "lightgray", cursor: "pointer", transition: "0.5s ease-in-out", "&:hover": { backgroundColor: "#eaeaea" }
-                    }}
-                  >
-                    {lang}
-                  </Typography>
-                )
-              })
-            }
-            <Typography sx={{ p: 2, cursor: "pointer" }} onClick={() => signOut()}>{t("signOut")}</Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', minWidth: 150 }}>
+              <Typography onClick={() => setLngsListOpen(!lngsListOpen)} sx={{ p: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', cursor: "pointer", userSelect: "none" }}>
+
+                {Languages.find?.(l => l.lang === i18n.language)?.full}
+                <img src={Languages?.find?.(l => l?.lang === i18n.language)?.imgSrc} />
+                <KeyboardArrowDownIcon className={`${styles.arrowIcon} ${lngsListOpen ? "rotated" : ""}`} />
+              </Typography>
+              {lngsListOpen &&
+                i18n.languages.map((lang, lId) => {
+                  if (lang !== i18n.language) {
+                    return (
+                      <Typography key={lId} onClick={() => changeLanguage(lang)}
+                        sx={{
+                          p: 1, backgroundColor: "lightgray", cursor: "pointer", width: '100%', transition: "0.5s ease-in-out", "&:hover": { backgroundColor: "#eaeaea" }
+                        }}
+                      >
+                        {Languages.find?.(l => l.lang === lang)?.full}
+                      </Typography>
+                    )
+                  }
+                })
+              }
+              <Typography sx={{ p: 2, cursor: "pointer", display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }} onClick={() => signOut()}>{t("signOut")} <LogoutIcon /></Typography>
+            </Box>
           </Popover>
         </div>
         :

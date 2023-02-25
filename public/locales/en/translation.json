@@ -1,8 +1,11 @@
 {
-  "lngTitle": "English",
   "home": "home",
   "news": "news",
   "profile": "profile",
   "signIn": "sign in",
-  "signOut": "sign out"
+  "signOut": "Sign out",
+  "follow": "follow",
+  "showMore": "show more"
+  "password": "Password"
+  "username": "Username"
 }

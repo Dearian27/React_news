@@ -7,11 +7,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { setAuth } from '../../redux/slices/userSlice';
 import { Alert, AlertColor, Snackbar, debounce } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 const LogIn: React.FC = () => {
 
   const navigate = useNavigate();
   const dipatch = useDispatch();
+  const { t, i18n } = useTranslation();
 
   const [name, setName] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -71,11 +73,12 @@ const LogIn: React.FC = () => {
       <form className={styles.form} onSubmit={handleSubmit}>
         <h1 className={styles.title}>Log in</h1>
         <input ref={nameRef} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setName(event.target.value)}
-          value={name} className={styles.input} type="text"
+          value={name} className={styles.input} type="text" placeholder={t('Username') || ""}
         />
         <label className={styles.pswd}>
           <input onChange={(event: React.ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)}
             value={password} className={styles.input} ref={pswdRef} type={viewType}
+            placeholder={t('Password') || ""}
           />
           <img className={styles.pswdIcon} onClick={changeView} src={viewType === "password" ? eyeCloseIcon : eyeIcon} />
         </label>

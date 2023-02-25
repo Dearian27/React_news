@@ -1,8 +1,11 @@
 {
-  "lngTitle": "Українська",
   "home": "дім",
   "news": "новини",
   "profile": "профіль",
   "signIn": "Увійти",
-  "signOut": "Вийти"
+  "signOut": "Вийти",
+  "follow": "перейти",
+  "showMore": "показати ще",
+  "password": "Пароль",
+  "username": "Ім'я користувача"
 }

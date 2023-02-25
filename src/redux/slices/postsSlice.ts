@@ -15,7 +15,6 @@ const initialState: initStateI = {
 }
 
 export const getPosts: any = createAsyncThunk("/getPosts", async () => { //!fix
-  console.log("getPosts");
   const res: any = await axios.get('https://jsonplaceholder.typicode.com/photos/');
   return res.data;
 })
@@ -28,11 +27,9 @@ const postsSlice = createSlice({
   },
   extraReducers: (builder: any) => {
     builder.addCase(getPosts.pending, (state: initStateI) => {
-      console.log("pending")
       state.isPostsLoading = true;
     })
     .addCase(getPosts.fulfilled, (state: initStateI, action: PayloadAction<postI[]>) => {
-      console.log("fulfilled")
       state.isPostsLoading = false;
       state.posts = action.payload;
     })

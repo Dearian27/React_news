@@ -7,11 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../redux/slices/postsSlice";
 import { postI } from "../models/post";
 import { RootState } from "../redux/store";
+import { useTranslation } from "react-i18next";
 
 
 
 
 const News: React.FC = () => {
+
+  const { t, i18n } = useTranslation();
 
   const dispatch = useDispatch();
 
@@ -68,7 +71,7 @@ const News: React.FC = () => {
                     <Typography variant="h5" sx={{ fontSize: "22px" }}>
                       {post.title}
                     </Typography>
-                    <Button onClick={handlePostClick} sx={{ mt: 1 }} variant="contained">Follow</Button>
+                    <Button onClick={handlePostClick} sx={{ mt: 1 }} variant="contained">{t("follow")}</Button>
                   </Box>
                 </Paper>
               </Grid>
@@ -77,7 +80,7 @@ const News: React.FC = () => {
         }
 
       </Grid>
-      <Button onClick={handleAddPosts} size="large" variant="outlined">Show more</Button>
+      <Button onClick={handleAddPosts} size="large" variant="outlined">{t("showMore")}</Button>
       <Snackbar open={alert} autoHideDuration={3000} onClose={handleClose} sx={{ position: "fixed", ml: "50%", transform: "translateX(-50%)", bottom: "30px" }}>
         <Alert onClose={handleClose} severity="success" sx={{ width: '350px' }}>
           You followed the post!
