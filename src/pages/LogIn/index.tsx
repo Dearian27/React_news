@@ -73,12 +73,12 @@ const LogIn: React.FC = () => {
       <form className={styles.form} onSubmit={handleSubmit}>
         <h1 className={styles.title}>Log in</h1>
         <input ref={nameRef} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setName(event.target.value)}
-          value={name} className={styles.input} type="text" placeholder={t('Username') || ""}
+          value={name} className={styles.input} type="text" placeholder={t('username') || ""}
         />
         <label className={styles.pswd}>
           <input onChange={(event: React.ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)}
             value={password} className={styles.input} ref={pswdRef} type={viewType}
-            placeholder={t('Password') || ""}
+            placeholder={t('password') || ""}
           />
           <img className={styles.pswdIcon} onClick={changeView} src={viewType === "password" ? eyeCloseIcon : eyeIcon} />
         </label>

@@ -99,7 +99,7 @@ const Header: React.FC = () => {
                           p: 1, backgroundColor: "lightgray", cursor: "pointer", width: '100%', transition: "0.5s ease-in-out", "&:hover": { backgroundColor: "#eaeaea" }
                         }}
                       >
-                        {Languages.find?.(l => l.lang === lang)?.full}
+                        {Languages.find?.(l => l?.lang === lang)?.full}
                       </Typography>
                     )
                   }
@@ -110,7 +110,7 @@ const Header: React.FC = () => {
           </Popover>
         </div>
         :
-        <button className={styles.btn} onClick={() => navigate('/login')}>{t("SignIn")}</button>
+        <button className={styles.btn} onClick={() => navigate('/login')}>{t("signIn")}</button>
       }
     </header >
   )
