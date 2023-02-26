@@ -18,7 +18,7 @@ const News: React.FC = () => {
 
   const dispatch = useDispatch();
 
-  const [visions, setVisions] = useState(3);
+  const [visions, setVisions] = useState(12);
   const { posts, isPostsLoading } = useSelector((state: RootState) => state.posts)
 
   const [availablePosts, setAvailablePosts] = useState<postI[]>([]);
@@ -26,7 +26,7 @@ const News: React.FC = () => {
   const [alert, setAlert] = useState<boolean>(false);
 
   const handleAddPosts = () => {
-    setVisions(visions + 3);
+    setVisions(visions + 12);
   }
 
   const handlePostClick = () => {

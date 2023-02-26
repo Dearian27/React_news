@@ -8,7 +8,8 @@ const Ls = ["en", "ua", "de"];
 
 i18n.use(Backend).use(LanguageDetector).use(initReactI18next).init({
   backend: {
-    loadPath: "/React_news/locales/{{lng}}/{{ns}}.json",
+    // loadPath: "/React_news/locales/{{lng}}/{{ns}}.json",
+    loadPath: "/locales/{{lng}}/{{ns}}.json",
   },
   fallbackLng: Ls,
   debug: true,
