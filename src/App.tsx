@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import LogIn from './pages/LogIn';
 import News from './pages/News';
 
+
 function App() {
 
   const [isAuth, setIsAuth] = useState<boolean>(false);
@@ -22,7 +23,7 @@ function App() {
   return (
     <section>
       <Header />
-      <Routes>
+      <Routes >
         <Route path='/' element={<Home />} />
         <Route path='/news' element={<News />} />
         <Route path='/login' element={<LogIn />} />
