@@ -8,11 +8,10 @@ const Ls = ["en", "ua", "de"];
 
 i18n.use(Backend).use(LanguageDetector).use(initReactI18next).init({
   backend: {
-    loadPath: "/locales/{{lng}}/{{ns}}.json",
+    loadPath: "/React_news/locales/{{lng}}/{{ns}}.json",
   },
   fallbackLng: Ls,
   debug: true,
-  // whitelist: Ls,
   interpolation: {
     escapeValue: false, // not needed for react as it escapes by default
   }

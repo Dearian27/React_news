@@ -11,7 +11,7 @@ const root = document.getElementById('root') as HTMLElement
 
 ReactDOM.createRoot(root).render(
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter basename="/React_news">
       <Suspense fallback={<div>Loading...</div>}>
         <App />
       </Suspense>
