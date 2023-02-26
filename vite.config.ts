@@ -6,4 +6,7 @@ export default defineConfig({
   // base: '/React_news/',
   // base: '/',
   plugins: [react()],
+  build: {
+    outDir: 'build'
+  }
 })
