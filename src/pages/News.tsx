@@ -89,7 +89,7 @@ const News: React.FC = () => {
         }
 
       </Grid>
-      {!isPostsLoading || availablePosts &&
+      {!isPostsLoading &&
         <Button onClick={handleAddPosts} size="large" variant="outlined">{t("showMore")}</Button>
       }
       <Snackbar open={alert} autoHideDuration={3000} onClose={handleClose} sx={{ position: "fixed", ml: "50%", transform: "translateX(-50%)", bottom: "30px" }}>
