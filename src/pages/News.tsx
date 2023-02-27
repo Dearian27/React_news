@@ -1,7 +1,6 @@
-import { Alert, Box, Button, Container, Snackbar, Typography } from "@mui/material";
+import { Alert, Box, Button, Snackbar, Typography, Skeleton, Paper } from "@mui/material";
 import Grid from '@mui/material/Grid'; // Grid version 1
 import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper/Paper";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../redux/slices/postsSlice";
@@ -19,6 +18,7 @@ const News: React.FC = () => {
   const dispatch = useDispatch();
 
   const [visions, setVisions] = useState(12);
+
   const { posts, isPostsLoading } = useSelector((state: RootState) => state.posts)
 
   const [availablePosts, setAvailablePosts] = useState<postI[]>([]);
@@ -44,25 +44,34 @@ const News: React.FC = () => {
     setAvailablePosts(posts.slice(0, visions));
   }, [posts, visions]);
 
-
   useEffect(() => {
     dispatch(getPosts());
   }, [])
+
 
   return (
     <section style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingBottom: "20px" }}>
       <Grid container spacing={3} sx={{ p: 3 }}>
         {isPostsLoading || !availablePosts ?
-          <Grid item xs={12}>
-            <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-              <Typography variant="h4" sx={{ textAlign: "center" }}>Loading...</Typography>
-            </Box>
-          </Grid>
+          [...Array(8)].map((_, id) => {
+            return (
+              <Grid item key={id} lg={4} xl={3} xs={12} sm={6} sx={{ p: 0 }}>
+                <Paper elevation={3} sx={{ borderRadius: 3, padding: 0 }}>
+                  <Skeleton variant="rounded" sx={{ height: "300px", borderTopLeftRadius: "12px", borderTopRightRadius: "12px" }} />
+                  <Box sx={{ p: 2, pt: 1 }}>
+                    <Skeleton variant="text" sx={{ fontSize: '2rem' }} />
+                    <Skeleton variant="text" sx={{ fontSize: '2rem' }} />
+                    <Skeleton variant="rounded" width={120} height={40} sx={{ marginTop: "10px" }} />
+                  </Box>
+                </Paper>
+              </Grid>
+            )
+          })
           :
           availablePosts?.map((post) => {
             return (
-              <Grid item key={post.id} lg={4} xl={3} xs={12} sm={6} >
-                <Paper elevation={4} sx={{ borderRadius: 3 }}>
+              <Grid item key={post.id} lg={4} xl={3} xs={12} sm={6}>
+                <Paper elevation={3} sx={{ borderRadius: 3 }}>
                   <img style={{ width: "100%", height: "300px", objectFit: "cover", borderTopLeftRadius: "12px", borderTopRightRadius: "12px" }}
                     src={post.url}
                     alt="post"
@@ -80,7 +89,9 @@ const News: React.FC = () => {
         }
 
       </Grid>
-      <Button onClick={handleAddPosts} size="large" variant="outlined">{t("showMore")}</Button>
+      {!isPostsLoading || availablePosts &&
+        <Button onClick={handleAddPosts} size="large" variant="outlined">{t("showMore")}</Button>
+      }
       <Snackbar open={alert} autoHideDuration={3000} onClose={handleClose} sx={{ position: "fixed", ml: "50%", transform: "translateX(-50%)", bottom: "30px" }}>
         <Alert onClose={handleClose} severity="success" sx={{ width: '350px' }}>
           You followed the post!

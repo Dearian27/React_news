@@ -1,16 +1,13 @@
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Container } from "@mui/material";
 import Grid from '@mui/material/Grid'; // Grid version 1
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper/Paper";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import JS from '../assets/logos/js.svg';
-import TS from '../assets/logos/ts.svg';
-import React from '../assets/logos/react.svg';
-import Redux from '../assets/logos/redux.svg';
-import MUI from '../assets/logos/mui.svg';
+import JS from '../../assets/logos/js.svg';
+import TS from '../../assets/logos/ts.svg';
+import React from '../../assets/logos/react.svg';
+import Redux from '../../assets/logos/redux.svg';
+import MUI from '../../assets/logos/mui.svg';
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import './styles.scss';
 
 type logosType = {
   src: string;
@@ -58,7 +55,7 @@ const Home: React.FC = () => {
           return (
             <Grid item xs={2} sm={2} md={2} lg={2} xl={2} key={id}>
               <Link to={logo.link} >
-                <img style={{ height: "200px", width: "200px" }} src={logo.src} alt={logo.alt} />
+                <img style={{ height: "200px", opacity: 1, width: "200px", animation: `fadeIn ${(id + 1) / 6}s linear` }} src={logo.src} alt={logo.alt} />
               </Link>
             </Grid>
           )
