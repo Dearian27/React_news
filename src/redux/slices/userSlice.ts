@@ -1,13 +1,13 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 
 interface stateI {
-  isAuth: boolean;
+  isAuth: boolean | null;
   name: string | null;
   password: string | null;
 }
 
 const initialState: stateI = {
-  isAuth: false,
+  isAuth: null,
   name: window.localStorage.getItem('name') as string || null,
   password: window.localStorage.getItem('password') as string || null,
 }

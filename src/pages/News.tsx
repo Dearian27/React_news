@@ -61,14 +61,14 @@ const News: React.FC = () => {
           :
           availablePosts?.map((post) => {
             return (
-              <Grid item key={post.id} lg={4} xl={3} xs={12} sm={6}>
+              <Grid item key={post.id} lg={4} xl={3} xs={12} sm={6} >
                 <Paper elevation={4} sx={{ borderRadius: 3 }}>
                   <img style={{ width: "100%", height: "300px", objectFit: "cover", borderTopLeftRadius: "12px", borderTopRightRadius: "12px" }}
                     src={post.url}
                     alt="post"
                   />
                   <Box sx={{ p: 2, pt: 1 }}>
-                    <Typography variant="h5" sx={{ fontSize: "22px" }}>
+                    <Typography variant="h5" sx={{ fontSize: "22px", minHeight: "60px" }}>
                       {post.title}
                     </Typography>
                     <Button onClick={handlePostClick} sx={{ mt: 1 }} variant="contained">{t("follow")}</Button>

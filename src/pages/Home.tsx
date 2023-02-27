@@ -10,11 +10,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Home: React.FC = () => {
 
-
   return (
-    <section style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingBottom: "20px" }}>
-      Home page
-    </section >
+    <Container >
+      <h2>Home page</h2>
+    </Container>
   )
 }
 
