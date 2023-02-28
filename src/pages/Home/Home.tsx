@@ -53,7 +53,7 @@ const Home: React.FC = () => {
       <Grid container gap={5} sx={{ display: "flex" }}>
         {logos.map((logo, id) => {
           return (
-            <Grid item xs={2} sm={2} md={2} lg={2} xl={2} key={id}>
+            <Grid item xs={6} sm={4} md={3} lg={2} xl={2} key={id}>
               <Link to={logo.link} >
                 <img style={{ height: "200px", opacity: 1, width: "200px", animation: `fadeIn ${(id + 1) / 6}s linear` }} src={logo.src} alt={logo.alt} />
               </Link>
