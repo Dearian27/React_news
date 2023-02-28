@@ -8,5 +8,8 @@
   "showMore": "show more",
   "password": "Password",
   "username": "Username",
+  "back": "Back",
+  "submit": "Submit",
+  "login": "Log in",
   "homePage": "Home page"
 }
