@@ -39,7 +39,7 @@ const Post: React.FC<postProps> = ({ post, onDelete, onClick }) => {
             {post.title}
           </Typography>
           {isAuth &&
-            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", p: "1px" }}>
               <Button disabled={isAuth ? false : true} onClick={handleClick} sx={{ mt: 1, }} variant={following ? "outlined" : "contained"}>
                 {following ?
                   t("following")
@@ -47,7 +47,7 @@ const Post: React.FC<postProps> = ({ post, onDelete, onClick }) => {
                   t("follow")
                 }
               </Button>
-              <DeleteOutlineOutlinedIcon fontSize="medium" sx={{ color: "#ff4949", cursor: "pointer" }} onClick={() => onDelete(post.id)} />
+              <DeleteOutlineOutlinedIcon fontSize="medium" sx={{ color: "#ff4949", cursor: "pointer", pt: 1, height: "30px" }} onClick={() => onDelete(post.id)} />
             </Box>
           }
         </Box>

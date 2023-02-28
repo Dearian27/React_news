@@ -18,12 +18,16 @@ const News: React.FC = () => {
 
   const [visions, setVisions] = useState(12);
 
+  //? Posts
   const { posts, isPostsLoading } = useSelector((state: RootState) => state.posts)
   const [availablePosts, setAvailablePosts] = useState<postI[]>([]);
 
+  //? Alert
   const [alert, setAlert] = useState<boolean>(false);
   const [alertMessage, setAlertMessage] = useState<string>("");
 
+
+  //* Posts actions
   const deletePostHandler = (id: number) => {
     dispatch(deletePost(id));
   }
@@ -37,13 +41,6 @@ const News: React.FC = () => {
     setAlertMessage(message);
   }
 
-  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setAlert(false);
-  };
-
   useEffect(() => {
     setAvailablePosts(posts.slice(0, visions));
   }, [posts, visions]);
@@ -51,6 +48,14 @@ const News: React.FC = () => {
   useEffect(() => {
     dispatch(getPosts());
   }, [])
+
+  //* Alert close
+  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setAlert(false);
+  };
 
 
   return (
@@ -62,7 +67,7 @@ const News: React.FC = () => {
           })
           :
           availablePosts?.map((post, id) => {
-            return <Post key={id} post={post} onClick={handlePostClick} onDelete={deletePostHandler} />
+            return <Post key={post.id} post={post} onClick={handlePostClick} onDelete={deletePostHandler} />
           })
         }
 
