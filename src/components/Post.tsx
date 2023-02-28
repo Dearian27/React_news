@@ -2,17 +2,28 @@ import { Grid, Paper, Box, Typography, Button } from "@mui/material"
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import { postI } from "../models/post";
 import { useTranslation } from "react-i18next";
-
+import { useState } from 'react'
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 interface postProps {
   post: postI;
   onDelete: (id: number) => void;
-  onClick: () => void;
+  onClick: (message: string) => void;
 }
 
 const Post: React.FC<postProps> = ({ post, onDelete, onClick }) => {
 
   const { t, i18n } = useTranslation();
+  const [following, setFollowing] = useState<boolean>(false);
+  const { isAuth } = useSelector((state: RootState) => state.user);
+
+  const handleClick = () => {
+    setFollowing(!following)
+    if (following) {
+      onClick("You unfollowed the post!");
+    } else onClick("You followed the post!");
+  }
 
   return (
     <Grid item key={post.id} lg={4} xl={3} xs={12} sm={6}>
@@ -28,7 +39,13 @@ const Post: React.FC<postProps> = ({ post, onDelete, onClick }) => {
             {post.title}
           </Typography>
           <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <Button onClick={onClick} sx={{ mt: 1 }} variant="contained">{t("follow")}</Button>
+            <Button disabled={isAuth ? false : true} onClick={handleClick} sx={{ mt: 1 }} variant={following ? "outlined" : "contained"}>
+              {following ?
+                t("following")
+                :
+                t("follow")
+              }
+            </Button>
             <DeleteOutlineOutlinedIcon fontSize="medium" sx={{ color: "#ff4949", cursor: "pointer" }} onClick={() => onDelete(post.id)} />
           </Box>
         </Box>

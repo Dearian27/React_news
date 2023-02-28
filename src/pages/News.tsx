@@ -19,10 +19,10 @@ const News: React.FC = () => {
   const [visions, setVisions] = useState(12);
 
   const { posts, isPostsLoading } = useSelector((state: RootState) => state.posts)
-
   const [availablePosts, setAvailablePosts] = useState<postI[]>([]);
 
   const [alert, setAlert] = useState<boolean>(false);
+  const [alertMessage, setAlertMessage] = useState<string>("");
 
   const deletePostHandler = (id: number) => {
     dispatch(deletePost(id));
@@ -32,8 +32,9 @@ const News: React.FC = () => {
     setVisions(visions + 12);
   }
 
-  const handlePostClick = () => {
+  const handlePostClick = (message: string) => {
     setAlert(true);
+    setAlertMessage(message);
   }
 
   const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
@@ -71,7 +72,7 @@ const News: React.FC = () => {
       }
       <Snackbar open={alert} autoHideDuration={3000} onClose={handleClose} sx={{ position: "fixed", ml: "50%", transform: "translateX(-50%)", bottom: "30px" }}>
         <Alert onClose={handleClose} severity="success" sx={{ width: '350px' }}>
-          You followed the post!
+          {alertMessage}
         </Alert>
       </Snackbar>
     </section >

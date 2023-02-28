@@ -19,7 +19,7 @@ const logos: logosType[] = [
   {
     src: JS,
     alt: "JavaScript",
-    link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+    link: "https://www.ecma-international.org/publications-and-standards/standards/ecma-262/"
   },
   {
     src: TS,
