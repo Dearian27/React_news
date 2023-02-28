@@ -81,7 +81,9 @@ const News: React.FC = () => {
                     alt="post"
                   />
                   <Box sx={{ p: 2, pt: 1 }}>
-                    <Typography variant="h5" sx={{ fontSize: "22px", minHeight: "60px" }}>
+                    <Typography variant="h5" sx={{
+                      fontSize: "22px", height: "60px", textOverflow: "ellipsis", width: "100%", textWrap: "no-wrap", overflow: "hidden"
+                    }}>
                       {post.title}
                     </Typography>
                     <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
