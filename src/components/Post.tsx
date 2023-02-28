@@ -39,7 +39,7 @@ const Post: React.FC<postProps> = ({ post, onDelete, onClick }) => {
             {post.title}
           </Typography>
           <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <Button disabled={isAuth ? false : true} onClick={handleClick} sx={{ mt: 1 }} variant={following ? "outlined" : "contained"}>
+            <Button disabled={isAuth ? false : true} onClick={handleClick} sx={{ mt: 1, }} variant={following ? "outlined" : "contained"}>
               {following ?
                 t("following")
                 :

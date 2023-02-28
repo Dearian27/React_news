@@ -109,7 +109,9 @@ const Header: React.FC = () => {
           </Popover>
         </div>
         :
-        <button className={styles.btn} onClick={() => navigate('/login')}>{t("signIn")}</button>
+        <Button className={styles.btn} sx={{ pt: 1, pl: 2, pr: 2 }} onClick={() => navigate('/login')}>
+          {t("signIn")}
+        </Button>
       }
     </header >
   )
