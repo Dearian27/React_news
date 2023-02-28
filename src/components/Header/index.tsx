@@ -47,10 +47,6 @@ const Header: React.FC = () => {
   const open = Boolean(anchorEl);
   const popoverId = open ? 'simple-popover' : undefined;
 
-  useEffect(() => {
-    dispatch(checkToken());
-  }, [])
-
   return (
     <header className={styles.header}>
       <Link to="/" style={{ textDecoration: "none" }} className={styles.logoWrapper}>

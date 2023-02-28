@@ -6,7 +6,8 @@ import LogIn from './pages/LogIn';
 import News from './pages/News';
 import Profile from './pages/Profile';
 import { RootState } from './redux/store';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { checkToken } from './redux/slices/userSlice';
 
 
 function App() {
@@ -15,6 +16,12 @@ function App() {
 
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkToken());
+  }, [])
+
 
   useEffect(() => {
     if (isAuth === false && location.pathname === '/profile') {
