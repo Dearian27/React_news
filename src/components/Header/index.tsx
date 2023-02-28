@@ -1,9 +1,9 @@
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import reactLogo from '../../assets/reactLogo.svg'
 import styles from './styles.module.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import userIcon from '../../assets/userIcon.jpg';
-import userSlice, { checkToken, removeToken } from '../../redux/slices/userSlice';
+import { checkToken, removeToken } from '../../redux/slices/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Button, Popover, Typography } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -21,7 +21,6 @@ const Header: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
 
-  dispatch(checkToken());
   const User = useSelector((state: any) => state.user);
 
   const changeLanguage = (value: string) => {
@@ -47,6 +46,10 @@ const Header: React.FC = () => {
 
   const open = Boolean(anchorEl);
   const popoverId = open ? 'simple-popover' : undefined;
+
+  useEffect(() => {
+    dispatch(checkToken());
+  }, [])
 
   return (
     <header className={styles.header}>

@@ -7,8 +7,8 @@ import { getPosts } from "../redux/slices/postsSlice";
 import { postI } from "../models/post";
 import { RootState } from "../redux/store";
 import { useTranslation } from "react-i18next";
-
-
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import { deletePost } from "../redux/slices/postsSlice";
 
 
 const News: React.FC = () => {
@@ -24,6 +24,10 @@ const News: React.FC = () => {
   const [availablePosts, setAvailablePosts] = useState<postI[]>([]);
 
   const [alert, setAlert] = useState<boolean>(false);
+
+  const deletePostHandler = (id: number) => {
+    dispatch(deletePost(id));
+  }
 
   const handleAddPosts = () => {
     setVisions(visions + 12);
@@ -80,7 +84,10 @@ const News: React.FC = () => {
                     <Typography variant="h5" sx={{ fontSize: "22px", minHeight: "60px" }}>
                       {post.title}
                     </Typography>
-                    <Button onClick={handlePostClick} sx={{ mt: 1 }} variant="contained">{t("follow")}</Button>
+                    <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <Button onClick={handlePostClick} sx={{ mt: 1 }} variant="contained">{t("follow")}</Button>
+                      <DeleteOutlineOutlinedIcon fontSize="medium" sx={{ color: "#ff4949", cursor: "pointer" }} onClick={() => deletePostHandler(post.id)} />
+                    </Box>
                   </Box>
                 </Paper>
               </Grid>

@@ -71,7 +71,7 @@ const LogIn: React.FC = () => {
   return (
     <section className={styles.container}>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <h1 className={styles.title}>Log in</h1>
+        <h1 className={styles.title}>{t("login")}</h1>
         <input ref={nameRef} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setName(event.target.value)}
           value={name} className={styles.input} type="text" placeholder={t('username') || ""}
         />
@@ -83,8 +83,8 @@ const LogIn: React.FC = () => {
           <img className={styles.pswdIcon} onClick={changeView} src={viewType === "password" ? eyeCloseIcon : eyeIcon} />
         </label>
         <div className={styles.btnContainer}>
-          <button type='button' onClick={() => navigate("/")} className={styles.btnBack}>Back</button>
-          <button type='submit' className={styles.btnSubmit}>Submit</button>
+          <button type='button' onClick={() => navigate("/")} className={styles.btnBack}>{t('back')}</button>
+          <button type='submit' className={styles.btnSubmit}>{t("submit")}</button>
         </div>
       </form>
 
