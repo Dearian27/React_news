@@ -38,16 +38,18 @@ const Post: React.FC<postProps> = ({ post, onDelete, onClick }) => {
           }}>
             {post.title}
           </Typography>
-          <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <Button disabled={isAuth ? false : true} onClick={handleClick} sx={{ mt: 1, }} variant={following ? "outlined" : "contained"}>
-              {following ?
-                t("following")
-                :
-                t("follow")
-              }
-            </Button>
-            <DeleteOutlineOutlinedIcon fontSize="medium" sx={{ color: "#ff4949", cursor: "pointer" }} onClick={() => onDelete(post.id)} />
-          </Box>
+          {isAuth &&
+            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <Button disabled={isAuth ? false : true} onClick={handleClick} sx={{ mt: 1, }} variant={following ? "outlined" : "contained"}>
+                {following ?
+                  t("following")
+                  :
+                  t("follow")
+                }
+              </Button>
+              <DeleteOutlineOutlinedIcon fontSize="medium" sx={{ color: "#ff4949", cursor: "pointer" }} onClick={() => onDelete(post.id)} />
+            </Box>
+          }
         </Box>
       </Paper>
     </Grid>

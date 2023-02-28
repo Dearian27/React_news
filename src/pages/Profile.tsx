@@ -2,11 +2,19 @@ import { Grid, Container, Box, Typography } from "@mui/material";
 import userIcon from '../assets/profile/profile.png';
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from 'react';
 
 const Profile: React.FC = () => {
 
+  const navigate = useNavigate();
   const User = useSelector((state: RootState) => state.user);
   const password = User?.password?.replace(/[^\n]/g, "●");
+
+
+  useEffect(() => {
+    if (!User.isAuth) navigate("/");
+  }, [])
 
   return (
     <Container>
