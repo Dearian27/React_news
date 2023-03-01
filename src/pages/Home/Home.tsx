@@ -9,13 +9,13 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import './styles.scss';
 
-type logosType = {
+type logoParams = {
   src: string;
   alt: string;
   link: string;
 };
 
-const logos: logosType[] = [
+const logos: logoParams[] = [
   {
     src: JS,
     alt: "JavaScript",

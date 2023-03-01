@@ -1,13 +1,13 @@
 import { Grid, Paper, Box, Typography, Button } from "@mui/material"
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import { postI } from "../models/post";
+import { postParams } from "../models/post";
 import { useTranslation } from "react-i18next";
 import { useState } from 'react'
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 
 interface postProps {
-  post: postI;
+  post: postParams;
   onDelete: (id: number) => void;
   onClick: (message: string) => void;
 }

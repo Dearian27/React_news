@@ -15,6 +15,9 @@ const LogIn: React.FC = () => {
   const dipatch = useDispatch();
   const { t, i18n } = useTranslation();
 
+  const USER_PASSWORD = '12345';
+  const USER_NAME = 'admin';
+
   const [name, setName] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [viewType, setViewType] = useState<string>('password');
@@ -42,29 +45,27 @@ const LogIn: React.FC = () => {
     }
   }
 
+  const validCredentials = password === USER_PASSWORD && name === USER_NAME;
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (password === "12345" && name === "admin") {
+
+    if (name === '') {
+      nameRef.current?.classList.add("red");
+    } else nameRef.current?.classList.remove("red");
+    if (password === '') {
+      pswdRef.current?.classList.add("red");
+    } else pswdRef.current?.classList.remove("red");
+
+    if (!validCredentials) {
+      setAlertMessage('The name or password is wrong');
+      setAlert(true);
+    } else {
       window.localStorage.setItem('name', name);
       window.localStorage.setItem('password', password);
 
       dipatch(setAuth(true));
       navigate('/');
-    }
-    else if (password === "" || name === "") {
-      if (name === '') {
-        nameRef.current?.classList.add("red");
-      } else nameRef.current?.classList.remove("red");
-      if (password === '') {
-        pswdRef.current?.classList.add("red");
-      } else pswdRef.current?.classList.remove("red");
-
-      setAlertMessage('Please provide the name and password');
-      setAlert(true);
-    }
-    else if (password !== "12345" || name !== "admin") {
-      setAlertMessage('The name or password is wrong');
-      setAlert(true);
     }
   }
 

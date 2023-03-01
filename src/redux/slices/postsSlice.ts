@@ -1,15 +1,15 @@
-import { AsyncThunk, PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { postI } from "../../models/post";
+import { postParams } from "../../models/post";
 
 
 
-interface initStateI {
- posts: postI[];
+type initStateParams = {
+ posts: postParams[];
  isPostsLoading: boolean;
 } 
 
-const initialState: initStateI = {
+const initialState: initStateParams = {
   posts: [],
   isPostsLoading: false,
 }
@@ -23,19 +23,19 @@ const postsSlice = createSlice({
   name: "posts",
   initialState,
   reducers: {
-    deletePost: (state: initStateI, action: PayloadAction<number>) => {
+    deletePost: (state: initStateParams, action: PayloadAction<number>) => {
       state.posts = state.posts.filter(post => post.id !== action.payload);
     }
   },
   extraReducers: (builder: any) => {
-    builder.addCase(getPosts.pending, (state: initStateI) => {
+    builder.addCase(getPosts.pending, (state: initStateParams) => {
       state.isPostsLoading = true;
     })
-    .addCase(getPosts.fulfilled, (state: initStateI, action: PayloadAction<postI[]>) => {
+    .addCase(getPosts.fulfilled, (state: initStateParams, action: PayloadAction<postParams[]>) => {
       state.isPostsLoading = false;
       state.posts = action.payload;
     })
-    .addCase(getPosts.rejected, (state: initStateI, action: PayloadAction<postI[]>) => {
+    .addCase(getPosts.rejected, (state: initStateParams, action: PayloadAction<postParams[]>) => {
       state.isPostsLoading = false;
     })
   }

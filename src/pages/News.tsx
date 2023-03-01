@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid'; // Grid version 1
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../redux/slices/postsSlice";
-import { postI } from "../models/post";
+import { postParams } from "../models/post";
 import { RootState } from "../redux/store";
 import { useTranslation } from "react-i18next";
 import { deletePost } from "../redux/slices/postsSlice";
@@ -18,16 +18,13 @@ const News: React.FC = () => {
 
   const [visions, setVisions] = useState(12);
 
-  //? Posts
   const { posts, isPostsLoading } = useSelector((state: RootState) => state.posts)
-  const [availablePosts, setAvailablePosts] = useState<postI[]>([]);
+  const [availablePosts, setAvailablePosts] = useState<postParams[]>([]);
 
-  //? Alert
   const [alert, setAlert] = useState<boolean>(false);
   const [alertMessage, setAlertMessage] = useState<string>("");
 
 
-  //* Posts actions
   const deletePostHandler = (id: number) => {
     dispatch(deletePost(id));
   }
@@ -49,14 +46,12 @@ const News: React.FC = () => {
     dispatch(getPosts());
   }, [])
 
-  //* Alert close
   const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }
     setAlert(false);
   };
-
 
   return (
     <section style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingBottom: "20px" }}>
@@ -70,7 +65,6 @@ const News: React.FC = () => {
             return <Post key={post.id} post={post} onClick={handlePostClick} onDelete={deletePostHandler} />
           })
         }
-
       </Grid>
       {!isPostsLoading &&
         <Button onClick={handleAddPosts} size="large" variant="outlined">{t("showMore")}</Button>
